@@ -12,7 +12,7 @@ struct ContentView: View {
         TabView {
             WelcomeView()
                 .tabItem {Label("Home", systemImage: "house")}
-            WelcomeView()
+            TrackerView()
                 .tabItem({Label("Tracker", systemImage: "figure.strengthtraining.functional")})
             WelcomeView()
                 .tabItem {Label("Settings", systemImage: "gearshape")}

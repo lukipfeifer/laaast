@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		F64D8BF62C1CDF870051A570 /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F64D8BF52C1CDF870051A570 /* WelcomeView.swift */; };
+		F64D8BF82C1CE4100051A570 /* TouchCurveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F64D8BF72C1CE4100051A570 /* TouchCurveView.swift */; };
+		F64D8BFA2C1CE45E0051A570 /* TouchEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = F64D8BF92C1CE45E0051A570 /* TouchEvent.swift */; };
+		F64D8BFC2C1CE49B0051A570 /* TrackerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F64D8BFB2C1CE49B0051A570 /* TrackerView.swift */; };
 		F6B7ABE12C1CD9C4001032D0 /* laaastApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6B7ABE02C1CD9C4001032D0 /* laaastApp.swift */; };
 		F6B7ABE32C1CD9C4001032D0 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6B7ABE22C1CD9C4001032D0 /* ContentView.swift */; };
 		F6B7ABE52C1CD9C5001032D0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F6B7ABE42C1CD9C5001032D0 /* Assets.xcassets */; };
@@ -16,6 +19,9 @@
 
 /* Begin PBXFileReference section */
 		F64D8BF52C1CDF870051A570 /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
+		F64D8BF72C1CE4100051A570 /* TouchCurveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TouchCurveView.swift; sourceTree = "<group>"; };
+		F64D8BF92C1CE45E0051A570 /* TouchEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TouchEvent.swift; sourceTree = "<group>"; };
+		F64D8BFB2C1CE49B0051A570 /* TrackerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackerView.swift; sourceTree = "<group>"; };
 		F6B7ABDD2C1CD9C4001032D0 /* laaast.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = laaast.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F6B7ABE02C1CD9C4001032D0 /* laaastApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = laaastApp.swift; sourceTree = "<group>"; };
 		F6B7ABE22C1CD9C4001032D0 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -55,6 +61,9 @@
 			children = (
 				F6B7ABE02C1CD9C4001032D0 /* laaastApp.swift */,
 				F6B7ABE22C1CD9C4001032D0 /* ContentView.swift */,
+				F64D8BF72C1CE4100051A570 /* TouchCurveView.swift */,
+				F64D8BFB2C1CE49B0051A570 /* TrackerView.swift */,
+				F64D8BF92C1CE45E0051A570 /* TouchEvent.swift */,
 				F64D8BF52C1CDF870051A570 /* WelcomeView.swift */,
 				F6B7ABE42C1CD9C5001032D0 /* Assets.xcassets */,
 				F6B7ABE62C1CD9C5001032D0 /* Preview Content */,
@@ -142,7 +151,10 @@
 			files = (
 				F6B7ABE32C1CD9C4001032D0 /* ContentView.swift in Sources */,
 				F64D8BF62C1CDF870051A570 /* WelcomeView.swift in Sources */,
+				F64D8BF82C1CE4100051A570 /* TouchCurveView.swift in Sources */,
+				F64D8BFA2C1CE45E0051A570 /* TouchEvent.swift in Sources */,
 				F6B7ABE12C1CD9C4001032D0 /* laaastApp.swift in Sources */,
+				F64D8BFC2C1CE49B0051A570 /* TrackerView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
