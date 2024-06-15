@@ -18,7 +18,7 @@ struct TrackerView: View {
             GeometryReader { geometry in
                 ZStack(alignment: .top) {
                     LinearGradient(
-                        gradient: Gradient(colors: [.blue, .indigo, .purple, .pink]),
+                        gradient: Gradient(colors: [.orange, .pink]),
                         startPoint: .top,
                         endPoint: .bottom
                     )
