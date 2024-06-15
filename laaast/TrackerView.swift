@@ -33,9 +33,8 @@ struct TrackerView: View {
             }
             .edgesIgnoringSafeArea(.all)
             
-            Button("Save Path") {
-                // Save touch events to a file or user defaults
-                saveTouchEvents()
+            Button("Save Recording") {
+                saveRecording()
             }
         }
     }
@@ -55,11 +54,14 @@ struct TrackerView: View {
         currentTouchPosition = nil
     }
     
-    private func saveTouchEvents() {
-        // Implement saving functionality, e.g., to a file or user defaults
-        // Example using UserDefaults:
-        let encodedData = try? JSONEncoder().encode(touchEvents)
-        UserDefaults.standard.set(encodedData, forKey: "savedTouchEvents")
+    private func saveRecording() {
+        let recordingID = UUID().uuidString
+        if let encodedData = try? JSONEncoder().encode(touchEvents) {
+            var recordings = UserDefaults.standard.dictionary(forKey: "savedRecordings") as? [String: Data] ?? [:]
+            recordings[recordingID] = encodedData
+            UserDefaults.standard.set(recordings, forKey: "savedRecordings")
+        }
+        touchEvents = []  // Clear current events after saving
     }
 }
 
@@ -68,3 +70,4 @@ struct TrackerView_Previews: PreviewProvider {
         TrackerView()
     }
 }
+
