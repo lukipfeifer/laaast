@@ -8,72 +8,55 @@
 import SwiftUI
 
 struct RecordingView: View {
-    @State private var touchEvents: [TouchEvent] = []
-    @State private var recordingIDs: [String] = []
-    @State private var selectedRecordingID: String?
+    @State private var recordings: [(id: String, touchEvents: [TouchEvent])] = []
     
     var body: some View {
         VStack {
-            Picker("Select Recording", selection: $selectedRecordingID) {
-                ForEach(recordingIDs, id: \.self) { id in
-                    Text(id).tag(id as String?)
+            ScrollView {
+                ForEach(recordings, id: \.id) { recording in
+                    VStack(alignment: .leading) {
+                        Text(recording.id)
+                            .font(.headline)
+                        
+                        TouchCurveView(touchEvents: recording.touchEvents, maxWidth: UIScreen.main.bounds.width, maxHeight: 100, yScaleFactor: 0.15)
+
+                    }
+                    .padding()
+                    .background(Color.white)
+                    .cornerRadius(10)
+                    .shadow(radius: 5)
+                    .padding(.horizontal)
                 }
             }
-            .pickerStyle(MenuPickerStyle())
-            .onChange(of: selectedRecordingID) { newID in
-                loadRecording(id: newID)
-            }
-            
-            TouchCurveView(touchEvents: touchEvents, maxWidth: UIScreen.main.bounds.width, maxHeight: 200, yScaleFactor: 0.5)
-                .padding()
             
             Spacer()
             
             VStack {
-                Button("Delete Recording") {
-                    deleteRecording(id: selectedRecordingID)
-                }
-                .disabled(selectedRecordingID == nil)
-                .padding(.bottom)
-                
                 Button("Delete All Recordings") {
                     deleteAllRecordings()
                 }
+                .padding(.bottom)
             }
             .padding()
             .onAppear {
-                loadRecordingIDs()
+                loadRecordings()
             }
         }
     }
     
-    private func loadRecordingIDs() {
-        let recordings = UserDefaults.standard.dictionary(forKey: "savedRecordings") as? [String: Data] ?? [:]
-        recordingIDs = Array(recordings.keys).sorted(by: >)
-    }
-    
-    private func loadRecording(id: String?) {
-        guard let id = id else { return }
-        if let recordings = UserDefaults.standard.dictionary(forKey: "savedRecordings") as? [String: Data],
-           let savedData = recordings[id],
-           let loadedEvents = try? JSONDecoder().decode([TouchEvent].self, from: savedData) {
-            self.touchEvents = loadedEvents
-        }
-    }
-    
-    private func deleteRecording(id: String?) {
-        guard let id = id else { return }
-        var recordings = UserDefaults.standard.dictionary(forKey: "savedRecordings") as? [String: Data] ?? [:]
-        recordings.removeValue(forKey: id)
-        UserDefaults.standard.set(recordings, forKey: "savedRecordings")
-        loadRecordingIDs()
-        touchEvents = []
+    private func loadRecordings() {
+        let recordingsDict = UserDefaults.standard.dictionary(forKey: "savedRecordings") as? [String: Data] ?? [:]
+        recordings = recordingsDict.compactMap { id, data in
+            if let touchEvents = try? JSONDecoder().decode([TouchEvent].self, from: data) {
+                return (id: id, touchEvents: touchEvents)
+            }
+            return nil
+        }.sorted(by: { $0.id > $1.id })
     }
     
     private func deleteAllRecordings() {
         UserDefaults.standard.removeObject(forKey: "savedRecordings")
-        recordingIDs.removeAll()
-        touchEvents = []
+        recordings.removeAll()
     }
 }
 
