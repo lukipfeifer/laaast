@@ -15,21 +15,27 @@ struct TrackerView: View {
     var body: some View {
         VStack {
             GeometryReader { geometry in
-                Rectangle()
-                    .fill(Color.gray.opacity(0.2))
-                    .gesture(
-                        DragGesture(minimumDistance: 0)
-                            .onChanged { value in
-                                self.currentTouchPosition = value.location
-                                if self.touchTimer == nil {
-                                    self.startLogging()
+                ZStack {
+                    Rectangle()
+                        .fill(Color.gray.opacity(0.2))
+                        .gesture(
+                            DragGesture(minimumDistance: 0)
+                                .onChanged { value in
+                                    self.currentTouchPosition = value.location
+                                    if self.touchTimer == nil {
+                                        self.startLogging()
+                                    }
                                 }
-                            }
-                            .onEnded { _ in
-                                self.stopLogging()
-                            }
-                    )
-                    .frame(width: geometry.size.width, height: geometry.size.height)
+                                .onEnded { _ in
+                                    self.stopLogging()
+                                }
+                        )
+                        .frame(width: geometry.size.width, height: geometry.size.height)
+                    
+                    Text("Tap anywhere to start recording")
+                        .foregroundColor(.gray)
+                        .opacity(touchEvents.isEmpty ? 1 : 0) // Hide the text once recording starts
+                }
             }
             .edgesIgnoringSafeArea(.all)
             

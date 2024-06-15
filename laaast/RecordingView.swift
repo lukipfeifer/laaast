@@ -27,11 +27,14 @@ struct RecordingView: View {
             TouchCurveView(touchEvents: touchEvents, maxWidth: UIScreen.main.bounds.width, maxHeight: 200, yScaleFactor: 0.5)
                 .padding()
             
-            HStack {
+            Spacer()
+            
+            VStack {
                 Button("Delete Recording") {
                     deleteRecording(id: selectedRecordingID)
                 }
                 .disabled(selectedRecordingID == nil)
+                .padding(.bottom)
                 
                 Button("Delete All Recordings") {
                     deleteAllRecordings()
