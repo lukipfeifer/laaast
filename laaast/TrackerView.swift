@@ -43,10 +43,11 @@ struct TrackerView: View {
                             saveRecording()
                         }
                         .padding()
-                        .background(Color.blue)
+                        .background(touchEvents.isEmpty ? Color.gray : Color.blue)
                         .foregroundColor(.white)
                         .cornerRadius(10)
                         .padding(.bottom, 20)
+                        .disabled(touchEvents.isEmpty)
         }
     }
     

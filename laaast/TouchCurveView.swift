@@ -46,6 +46,7 @@ struct TouchCurveView: View {
                             let xPosition = mapToXPosition(time: time, firstEvent: firstEvent, lastEvent: lastEvent, in: geometry.size)
                             Text(String(format: "%.f", interval * Double(i)))
                                 .font(.caption)
+                                .padding(.top, 20)
                                 .position(x: xPosition, y: geometry.size.height - 10)
                         }
                     }
