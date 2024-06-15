@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct DisplayCurveView: View {
+struct RecordingView: View {
     @State private var touchEvents: [TouchEvent] = []
     @State private var recordingIDs: [String] = []
     @State private var selectedRecordingID: String?
@@ -26,15 +26,27 @@ struct DisplayCurveView: View {
             
             TouchCurveView(touchEvents: touchEvents, maxWidth: UIScreen.main.bounds.width, maxHeight: 200, yScaleFactor: 0.5)
                 .padding()
-                .onAppear {
-                    loadRecordingIDs()
+            
+            HStack {
+                Button("Delete Recording") {
+                    deleteRecording(id: selectedRecordingID)
                 }
+                .disabled(selectedRecordingID == nil)
+                
+                Button("Delete All Recordings") {
+                    deleteAllRecordings()
+                }
+            }
+            .padding()
+            .onAppear {
+                loadRecordingIDs()
+            }
         }
     }
     
     private func loadRecordingIDs() {
         let recordings = UserDefaults.standard.dictionary(forKey: "savedRecordings") as? [String: Data] ?? [:]
-        recordingIDs = Array(recordings.keys)
+        recordingIDs = Array(recordings.keys).sorted(by: >)
     }
     
     private func loadRecording(id: String?) {
@@ -45,11 +57,26 @@ struct DisplayCurveView: View {
             self.touchEvents = loadedEvents
         }
     }
+    
+    private func deleteRecording(id: String?) {
+        guard let id = id else { return }
+        var recordings = UserDefaults.standard.dictionary(forKey: "savedRecordings") as? [String: Data] ?? [:]
+        recordings.removeValue(forKey: id)
+        UserDefaults.standard.set(recordings, forKey: "savedRecordings")
+        loadRecordingIDs()
+        touchEvents = []
+    }
+    
+    private func deleteAllRecordings() {
+        UserDefaults.standard.removeObject(forKey: "savedRecordings")
+        recordingIDs.removeAll()
+        touchEvents = []
+    }
 }
 
-struct DisplayCurveView_Previews: PreviewProvider {
+struct RecordingView_Previews: PreviewProvider {
     static var previews: some View {
-        DisplayCurveView()
+        RecordingView()
     }
 }
 

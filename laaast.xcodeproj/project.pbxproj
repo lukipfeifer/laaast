@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F60453342C1DCC4100A5A800 /* TouchCurveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F60453332C1DCC4100A5A800 /* TouchCurveView.swift */; };
 		F64D8BF62C1CDF870051A570 /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F64D8BF52C1CDF870051A570 /* WelcomeView.swift */; };
 		F64D8BFA2C1CE45E0051A570 /* TouchEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = F64D8BF92C1CE45E0051A570 /* TouchEvent.swift */; };
 		F64D8BFC2C1CE49B0051A570 /* TrackerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F64D8BFB2C1CE49B0051A570 /* TrackerView.swift */; };
@@ -14,11 +15,11 @@
 		F6B7ABE32C1CD9C4001032D0 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6B7ABE22C1CD9C4001032D0 /* ContentView.swift */; };
 		F6B7ABE52C1CD9C5001032D0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F6B7ABE42C1CD9C5001032D0 /* Assets.xcassets */; };
 		F6B7ABE82C1CD9C5001032D0 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F6B7ABE72C1CD9C5001032D0 /* Preview Assets.xcassets */; };
-		F6F18A152C1DB4A90094D956 /* DisplayCurveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6F18A142C1DB4A90094D956 /* DisplayCurveView.swift */; };
-		F6F18A172C1DB6280094D956 /* TouchCurveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6F18A162C1DB6280094D956 /* TouchCurveView.swift */; };
+		F6F18A152C1DB4A90094D956 /* RecordingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6F18A142C1DB4A90094D956 /* RecordingView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		F60453332C1DCC4100A5A800 /* TouchCurveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TouchCurveView.swift; sourceTree = "<group>"; };
 		F64D8BF52C1CDF870051A570 /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
 		F64D8BF92C1CE45E0051A570 /* TouchEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TouchEvent.swift; sourceTree = "<group>"; };
 		F64D8BFB2C1CE49B0051A570 /* TrackerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackerView.swift; sourceTree = "<group>"; };
@@ -27,8 +28,7 @@
 		F6B7ABE22C1CD9C4001032D0 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		F6B7ABE42C1CD9C5001032D0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F6B7ABE72C1CD9C5001032D0 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		F6F18A142C1DB4A90094D956 /* DisplayCurveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayCurveView.swift; sourceTree = "<group>"; };
-		F6F18A162C1DB6280094D956 /* TouchCurveView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TouchCurveView.swift; path = ../../../.Trash/TouchCurveView.swift; sourceTree = "<group>"; };
+		F6F18A142C1DB4A90094D956 /* RecordingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,11 +63,11 @@
 			children = (
 				F6B7ABE02C1CD9C4001032D0 /* laaastApp.swift */,
 				F6B7ABE22C1CD9C4001032D0 /* ContentView.swift */,
-				F64D8BFB2C1CE49B0051A570 /* TrackerView.swift */,
-				F6F18A162C1DB6280094D956 /* TouchCurveView.swift */,
-				F6F18A142C1DB4A90094D956 /* DisplayCurveView.swift */,
-				F64D8BF92C1CE45E0051A570 /* TouchEvent.swift */,
 				F64D8BF52C1CDF870051A570 /* WelcomeView.swift */,
+				F64D8BFB2C1CE49B0051A570 /* TrackerView.swift */,
+				F6F18A142C1DB4A90094D956 /* RecordingView.swift */,
+				F60453332C1DCC4100A5A800 /* TouchCurveView.swift */,
+				F64D8BF92C1CE45E0051A570 /* TouchEvent.swift */,
 				F6B7ABE42C1CD9C5001032D0 /* Assets.xcassets */,
 				F6B7ABE62C1CD9C5001032D0 /* Preview Content */,
 			);
@@ -152,12 +152,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F6F18A172C1DB6280094D956 /* TouchCurveView.swift in Sources */,
+				F60453342C1DCC4100A5A800 /* TouchCurveView.swift in Sources */,
 				F6B7ABE32C1CD9C4001032D0 /* ContentView.swift in Sources */,
 				F64D8BF62C1CDF870051A570 /* WelcomeView.swift in Sources */,
 				F64D8BFA2C1CE45E0051A570 /* TouchEvent.swift in Sources */,
 				F6B7ABE12C1CD9C4001032D0 /* laaastApp.swift in Sources */,
-				F6F18A152C1DB4A90094D956 /* DisplayCurveView.swift in Sources */,
+				F6F18A152C1DB4A90094D956 /* RecordingView.swift in Sources */,
 				F64D8BFC2C1CE49B0051A570 /* TrackerView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

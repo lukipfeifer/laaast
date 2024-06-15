@@ -55,7 +55,10 @@ struct TrackerView: View {
     }
     
     private func saveRecording() {
-        let recordingID = UUID().uuidString
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd_HH:mm:ss"
+        let recordingID = dateFormatter.string(from: Date())
+        
         if let encodedData = try? JSONEncoder().encode(touchEvents) {
             var recordings = UserDefaults.standard.dictionary(forKey: "savedRecordings") as? [String: Data] ?? [:]
             recordings[recordingID] = encodedData
