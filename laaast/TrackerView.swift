@@ -17,18 +17,21 @@ struct TrackerView: View {
         VStack {
             GeometryReader { geometry in
                 ZStack(alignment: .top) {
-                    Rectangle()
-                        .fill(Color.gray.opacity(0.2))
-                        .gesture(
-                            DragGesture(minimumDistance: 0)
-                                .onChanged { value in
-                                    self.currentTouchPosition = value.location
-                                    if self.timer == nil {
-                                        self.startLogging()
-                                    }
+                    LinearGradient(
+                        gradient: Gradient(colors: [.blue, .indigo, .purple, .pink]),
+                        startPoint: .top,
+                        endPoint: .bottom
+                    )
+                    .gesture(
+                        DragGesture(minimumDistance: 0)
+                            .onChanged { value in
+                                self.currentTouchPosition = value.location
+                                if self.timer == nil {
+                                    self.startLogging()
                                 }
-                        )
-                        .frame(width: geometry.size.width, height: geometry.size.height)
+                            }
+                    )
+                    .frame(width: geometry.size.width, height: geometry.size.height)
                     
                     VStack {
                         Text("Elapsed Time: \(String(format: "%.2f", elapsedTime)) s")
@@ -39,7 +42,7 @@ struct TrackerView: View {
                             .opacity(touchEvents.isEmpty ? 0 : 1)
                         
                         Text("Tap anywhere to start recording")
-                            .foregroundColor(.gray)
+                            .foregroundColor(.white)
                             .opacity(touchEvents.isEmpty ? 1 : 0) // Hide the text once recording starts
                         
                         Spacer()
