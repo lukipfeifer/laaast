@@ -10,49 +10,69 @@ import SwiftUI
 struct TrackerView: View {
     @State private var touchEvents: [TouchEvent] = []
     @State private var currentTouchPosition: CGPoint?
-    @State private var touchTimer: Timer?
-    
+    @State private var timer: Timer?
+    @State private var elapsedTime: TimeInterval = 0
+
     var body: some View {
         VStack {
             GeometryReader { geometry in
-                ZStack {
+                ZStack(alignment: .top) {
                     Rectangle()
                         .fill(Color.gray.opacity(0.2))
                         .gesture(
                             DragGesture(minimumDistance: 0)
                                 .onChanged { value in
                                     self.currentTouchPosition = value.location
-                                    if self.touchTimer == nil {
+                                    if self.timer == nil {
                                         self.startLogging()
                                     }
-                                }
-                                .onEnded { _ in
-                                    self.stopLogging()
                                 }
                         )
                         .frame(width: geometry.size.width, height: geometry.size.height)
                     
-                    Text("Tap anywhere to start recording")
-                        .foregroundColor(.gray)
-                        .opacity(touchEvents.isEmpty ? 1 : 0) // Hide the text once recording starts
+                    VStack {
+                        Text("Elapsed Time: \(String(format: "%.2f", elapsedTime)) s")
+                            .padding()
+                            .background(Color.white.opacity(0.7))
+                            .cornerRadius(10)
+                            .padding(.top, 80)
+                            .opacity(touchEvents.isEmpty ? 0 : 1)
+                        
+                        Text("Tap anywhere to start recording")
+                            .foregroundColor(.gray)
+                            .opacity(touchEvents.isEmpty ? 1 : 0) // Hide the text once recording starts
+                        
+                        Spacer()
+                    }
                 }
             }
             .edgesIgnoringSafeArea(.all)
             
-            Button("Stop and Save Recording") {
-                            saveRecording()
-                        }
-                        .padding()
-                        .background(touchEvents.isEmpty ? Color.gray : Color.blue)
-                        .foregroundColor(.white)
-                        .cornerRadius(10)
-                        .padding(.bottom, 20)
-                        .disabled(touchEvents.isEmpty)
+            Button(action: {
+                stopAndSaveRecording()
+            }) {
+                Text("Stop and Save Recording")
+                    .padding()
+                    .frame(maxWidth: .infinity)
+                    .background(touchEvents.isEmpty ? Color.gray : Color.blue)
+                    .foregroundColor(.white)
+                    .cornerRadius(10)
+                    .padding(.bottom, 20)
+            }
+            .disabled(touchEvents.isEmpty)
+            .padding(.horizontal)
+        }
+        .onAppear {
+            self.resetElapsedTime()
         }
     }
     
     private func startLogging() {
-        touchTimer = Timer.scheduledTimer(withTimeInterval: 0.2, repeats: true) { _ in
+        elapsedTime = 0
+        timer?.invalidate()
+        timer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { _ in
+            self.elapsedTime += 0.1
+            
             if let position = self.currentTouchPosition {
                 let event = TouchEvent(timestamp: Date(), position: position)
                 self.touchEvents.append(event)
@@ -61,11 +81,16 @@ struct TrackerView: View {
     }
     
     private func stopLogging() {
-        touchTimer?.invalidate()
-        touchTimer = nil
+        timer?.invalidate()
+        timer = nil
         currentTouchPosition = nil
     }
     
+    private func stopAndSaveRecording() {
+        stopLogging()
+        saveRecording()
+    }
+
     private func saveRecording() {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd_HH:mm:ss"
@@ -77,6 +102,11 @@ struct TrackerView: View {
             UserDefaults.standard.set(recordings, forKey: "savedRecordings")
         }
         touchEvents = []  // Clear current events after saving
+        resetElapsedTime()
+    }
+
+    private func resetElapsedTime() {
+        elapsedTime = 0
     }
 }
 
