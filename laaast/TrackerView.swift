@@ -39,9 +39,14 @@ struct TrackerView: View {
             }
             .edgesIgnoringSafeArea(.all)
             
-            Button("Save Recording") {
-                saveRecording()
-            }
+            Button("Stop and Save Recording") {
+                            saveRecording()
+                        }
+                        .padding()
+                        .background(Color.blue)
+                        .foregroundColor(.white)
+                        .cornerRadius(10)
+                        .padding(.bottom, 20)
         }
     }
     
