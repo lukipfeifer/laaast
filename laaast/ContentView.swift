@@ -14,6 +14,8 @@ struct ContentView: View {
                 .tabItem {Label("Home", systemImage: "house")}
             TrackerView()
                 .tabItem({Label("Tracker", systemImage: "figure.strengthtraining.functional")})
+            DisplayCurveView()
+                .tabItem({Label("Recordings", systemImage: "record.circle")})
             WelcomeView()
                 .tabItem {Label("Settings", systemImage: "gearshape")}
         }

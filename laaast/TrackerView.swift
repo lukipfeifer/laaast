@@ -14,9 +14,6 @@ struct TrackerView: View {
     
     var body: some View {
         VStack {
-            TouchCurveView(touchEvents: touchEvents, maxWidth: UIScreen.main.bounds.width, maxHeight: 200, yScaleFactor: 0.5)  // Adjust yScaleFactor as needed
-                .padding()
-            
             GeometryReader { geometry in
                 Rectangle()
                     .fill(Color.gray.opacity(0.2))
@@ -35,6 +32,11 @@ struct TrackerView: View {
                     .frame(width: geometry.size.width, height: geometry.size.height)
             }
             .edgesIgnoringSafeArea(.all)
+            
+            Button("Save Path") {
+                // Save touch events to a file or user defaults
+                saveTouchEvents()
+            }
         }
     }
     
@@ -52,6 +54,13 @@ struct TrackerView: View {
         touchTimer = nil
         currentTouchPosition = nil
     }
+    
+    private func saveTouchEvents() {
+        // Implement saving functionality, e.g., to a file or user defaults
+        // Example using UserDefaults:
+        let encodedData = try? JSONEncoder().encode(touchEvents)
+        UserDefaults.standard.set(encodedData, forKey: "savedTouchEvents")
+    }
 }
 
 struct TrackerView_Previews: PreviewProvider {
@@ -59,4 +68,3 @@ struct TrackerView_Previews: PreviewProvider {
         TrackerView()
     }
 }
-
