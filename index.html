@@ -109,8 +109,10 @@
   /* Welcome screen */
   .welcome {
     background: linear-gradient(180deg, #fff 0%, var(--laaast-soft) 100%);
-    padding: 20px 28px 32px;
+    padding: 20px 28px calc(32px + env(safe-area-inset-bottom, 0px));
     display: flex; flex-direction: column;
+    height: 100%;
+    overflow-y: auto;
   }
   .welcome-illustration {
     flex: 1;
